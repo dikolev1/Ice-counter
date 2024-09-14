@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IceCounter.Shift">
+
+    <StackLayout BackgroundColor="#e4e4e4" Spacing="0">
+
+        <Frame BackgroundColor="#93e1fa" BorderColor="#57c0e2" Padding="14" CornerRadius="0" HasShadow="False">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label x:Name="ffff" Text="Товары на смене" TextColor="#222222" FontSize="28" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                <ImageButton Source="open_book.png" BackgroundColor="#93e1fa" Margin="0, 6" Padding="0,0,0,2" CornerRadius="3" WidthRequest="40" HeightRequest="40" Clicked="ShowHistory"/>
+                <ImageButton Source="power.png" BackgroundColor="#93e1fa" Margin="6, 6" Padding="0,0,0,2" CornerRadius="3" WidthRequest="40" HeightRequest="40" Clicked="StopShift"/>
+            </StackLayout>
+        </Frame>
+
+        <Grid Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Ice Cream Table -->
+            <Frame Grid.Column="0" Padding="0" BackgroundColor="#7dace9" BorderColor="#5c95de">
+                <StackLayout Spacing="0">
+                    <Frame BackgroundColor="#5c95de" Padding="6">
+                        <Label Text="Мороженное" TextColor="#222222" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                    </Frame>
+                    <ScrollView>
+                        <StackLayout Spacing="3">
+                            <CollectionView x:Name="IceCreams">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Grid Margin="0,2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Grid.Column="0" Grid.Row="0" IsVisible="{Binding IsChoosed}" IsEnabled="{Binding IsChoosed}" Text="+" TextColor="White" BackgroundColor="#3872a8" FontSize="20" VerticalOptions="FillAndExpand" WidthRequest="30" Padding="0,0,0,0" Margin="0,0,-6,0" Clicked="ItemCountEdit" CommandParameter="{Binding ID}"/>
+                                            
+                                            <StackLayout Grid.Column="1" Grid.Row="0" Padding="0" Margin="0" Spacing="0">
+                                                <Button Text="{Binding Name}" TextColor="#222222" FontSize="21" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Italic" BackgroundColor="{Binding HexColor}" Padding="0,0" Margin="2" Clicked="ShiftItemClick" CommandParameter="{Binding ID}"/>
+                                            </StackLayout>
+
+                                            <Button Grid.Column="2" Grid.Row="0" IsVisible="{Binding IsChoosed}" IsEnabled="{Binding IsChoosed}" Text="-" TextColor="White" BackgroundColor="#3872a8" FontSize="30" WidthRequest="30" Padding="1,0,0,5" Margin="-6,0,0,0" Clicked="ItemCountEdit" CommandParameter="{Binding ID}"/>
+
+                                            <Frame Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" IsVisible="{Binding IsChoosed}" IsEnabled="{Binding IsChoosed}" VerticalOptions="End" Padding="0" Margin="0,-5,0,4">
+                                                <Label Text="{Binding Count}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18" Padding="1,-2,0,0" Margin="0"/>
+                                            </Frame>
+                                            
+                                        </Grid>
+                                        
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </Frame>
+
+            <!-- Dishes Table 9e6938 -->
+            <Frame Grid.Column="1" Padding="0" BackgroundColor="#e9ba7d" BorderColor="#dea55c">
+                <StackLayout Spacing="0">
+                    <Frame BackgroundColor="#dea55c" Padding="6">
+                        <Label Text="Посуда" TextColor="#222222" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                    </Frame>
+                    <ScrollView>
+                        <StackLayout Spacing="3">
+                            <CollectionView x:Name="Dishes">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Grid Margin="0,1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Grid.Column="0" Grid.Row="0" IsVisible="{Binding IsChoosed}" IsEnabled="{Binding IsChoosed}" Text="+" TextColor="White" BackgroundColor="#9e6938" FontSize="20" VerticalOptions="FillAndExpand" WidthRequest="30" Padding="0,0,0,0" Margin="0,0,-6,0" Clicked="ItemCountEdit" CommandParameter="{Binding ID}"/>
+
+                                            <StackLayout Grid.Column="1" Grid.Row="0" Padding="0" Margin="0" Spacing="0">
+                                                <Button Text="{Binding Name}" TextColor="#222222" FontSize="21" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Italic" BackgroundColor="{Binding HexColor}" Padding="0,0" Margin="2" Clicked="ShiftItemClick" CommandParameter="{Binding ID}"/>
+                                            </StackLayout>
+
+                                            <Button Grid.Column="2" Grid.Row="0" IsVisible="{Binding IsChoosed}" IsEnabled="{Binding IsChoosed}" Text="-" TextColor="White" BackgroundColor="#9e6938" FontSize="30" WidthRequest="30" Padding="1,0,0,5" Margin="-6,0,0,0" Clicked="ItemCountEdit" CommandParameter="{Binding ID}"/>
+
+                                            <Frame Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" IsVisible="{Binding IsChoosed}" IsEnabled="{Binding IsChoosed}" VerticalOptions="End" Padding="0" Margin="0,-5,0,4">
+                                                <Label Text="{Binding Count}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18" Padding="1,-2,0,0" Margin="0"/>
+                                            </Frame>
+
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+        <Button Text="Завершить транзакцию" BackgroundColor="#378da9" TextColor="White" FontAttributes="Italic" VerticalOptions="Start" Margin="6, 6, 6, 0" CornerRadius="3" Clicked="AddDeal"/>
+        <Label x:Name="lbl" Text=""/>
+    </StackLayout>
+
+</ContentPage>

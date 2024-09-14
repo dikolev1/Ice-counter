@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IceCounter.MainPage">
+
+
+    <StackLayout BackgroundColor="#e4e4e4" Spacing="0">
+
+        <Frame BackgroundColor="#93e1fa" BorderColor="#57c0e2" Padding="14" CornerRadius="0" HasShadow="False">
+            <Label Text="Товары" TextColor="#222222" FontSize="28" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+        </Frame>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Таблица мороженного -->
+            <Frame Grid.Column="0" Padding="0" BackgroundColor="#7dace9" BorderColor="#5c95de" VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="0">
+
+                    <Frame BackgroundColor="#5c95de" Padding="6">
+                        <Label Text="Мороженное" TextColor="#222222" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+                    </Frame>
+
+                    <ScrollView VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="3">
+
+                            <CollectionView x:Name="IceCreams">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+
+                                            <!-- Пример ячейки -->
+                                            <Frame BackgroundColor="#679fe7" Padding="0, 5" Margin="0, 3">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" TextColor="#222222" FontSize="21" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="6, 0"/>
+                                                    <Button Text="-" TextColor="#222222" BackgroundColor="#5c95de" FontSize="26" HeightRequest="26" WidthRequest="26" HorizontalOptions="End" VerticalOptions="Center" Padding="-8" Margin="0, 0, 3, 0" Clicked="DeleteItem" CommandParameter="{Binding ID}"/>
+                                                </StackLayout>
+                                            </Frame>
+
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                    </ScrollView>
+
+                </StackLayout>
+            </Frame>
+
+            <!-- Таблица посуды -->
+            <Frame Grid.Column="1" Padding="0" BackgroundColor="#e9ba7d" BorderColor="#dea55c" VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="0">
+
+                    <Frame BackgroundColor="#dea55c" Padding="6">
+                        <Label Text="Посуда" TextColor="#222222" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+                    </Frame>
+
+                    <ScrollView VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="3">
+
+                            <CollectionView x:Name="Dishes">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+
+                                            <!-- Пример ячейки -->
+                                            <Frame BackgroundColor="#e7af67" Padding="0, 5" Margin="0, 3">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" TextColor="#222222" FontSize="21" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="6, 0"/>
+                                                    <Button Text="-" TextColor="#222222" BackgroundColor="#dea55c" FontSize="26" HeightRequest="26" WidthRequest="26" HorizontalOptions="End" VerticalOptions="Center" Padding="-8" Margin="0, 0, 3, 0" Clicked="DeleteItem" CommandParameter="{Binding ID}"/>
+                                                </StackLayout>
+                                            </Frame>
+
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                    </ScrollView>
+
+                </StackLayout>
+            </Frame>
+
+        </Grid>
+
+        <!-- Добавление предмета -->
+        <Frame Margin="6" BackgroundColor="#6bbcd6" Padding="0,0,0,0" HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="6" Spacing="6">
+                <Label Text="Новый товар" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White" FontSize="18" Margin="3"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="newItemName" BackgroundColor="#e4e4e4" MaxLength="20" Placeholder="Название" PlaceholderColor="#343434" FontAttributes="Italic" HorizontalOptions="FillAndExpand" Margin="3, 0"/>
+
+                    <Label x:Name="typeName" TextColor="#222222" Text="Мороженное" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" HorizontalOptions="End"/>
+                    <RadioButton x:Name="isIcecream" GroupName="ItemType" IsChecked="True" VerticalOptions="Center" CheckedChanged="ChangeNewItemType"/>
+                    <RadioButton GroupName="ItemType" Margin="3" VerticalOptions="Center" CheckedChanged="ChangeNewItemType"/>
+                </StackLayout>
+
+                <Button Text="Добавить" BackgroundColor="#378da9" TextColor="White" FontAttributes="Italic" Margin="0" HorizontalOptions="FillAndExpand" Clicked="AddItem"/>
+
+            </StackLayout>
+        </Frame>
+
+        <Button x:Name="StartShiftBtn" Text="Начать смену" BackgroundColor="#378da9" TextColor="White" FontAttributes="Italic" VerticalOptions="EndAndExpand" Margin="6, 0" CornerRadius="3" HorizontalOptions="FillAndExpand" Clicked="ChooseShiftItems"/>
+
+        <Button Text="История продаж" BackgroundColor="#378da9" TextColor="White" FontAttributes="Italic" VerticalOptions="End" Margin="6, 12" CornerRadius="3" HorizontalOptions="FillAndExpand" Clicked="ShowHistory"/>
+
+    </StackLayout>
+</ContentPage>
